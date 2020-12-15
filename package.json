@@ -1,0 +1,31 @@
+{
+  "name": "rc-stepguide",
+  "version": "1.0.10",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "babel src --extensions .tsx,.ts --out-dir lib",
+    "tsc": "tsc --alwaysStrict",
+    "sass": "node-sass src/ -o lib/",
+    "pub": "npm run build && npm run tsc && npm run sass",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "@babel/runtime-corejs3": "^7.12.5",
+    "core-js": "2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}

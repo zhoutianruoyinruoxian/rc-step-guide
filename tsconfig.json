@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationDir": "./lib",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "jsx": "react",
+    // "isolatedModules": true,
+    "lib": [
+      "dom",
+      "es6",
+      "es2017"
+    ],
+  }
+}
