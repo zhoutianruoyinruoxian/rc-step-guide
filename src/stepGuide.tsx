@@ -99,6 +99,9 @@ export default function StepGuide(stepData: Steps, setting?: Setting) {
     }
     const currentData = steps[currentStep];
     targetDom = document.querySelector(currentData.element);
+    if (!targetDom) {
+      throw new Error(`element ${currentData.element} is notfound, please check your element in stepData`);
+    }
     targetDom.scrollIntoViewIfNeeded();
     targetDom.classList.add(`${options.prefixCls}-focused`);
     options.created(targetDom);
