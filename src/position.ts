@@ -5,14 +5,17 @@ export interface Position {
   height: number;
   left: number;
   top: number;
+  right: number;
+  bottom: number;
 }
 
-const scale = 5; // 正常情况下箭头的偏移量
-const space = 12; // 提示框相对目标的位置偏移
+const arrowSize = 6; // 箭头自身相对目标中心的偏移量（标准值为6，箭头tranform之后计算得出来的值，跟箭头自身大小有关）
+const space = 13; // 提示框相对目标的位置偏移量
+const scale = 5; // 正常情况下提示框相对箭头的偏移量(5代表的5分之一位置)
 const verticalPlacement = ['right', 'rightTop', 'rightBottom', 'left', 'leftTop', 'leftBottom'];
 const horizontalPlacement = ['top', 'topLeft', 'topRight', 'bottom', 'bottomLeft', 'bottomRight'];
 
-export function getPosition(placement: Placement, tarPosition: Position, position: Position, arrowSize: number) {
+export function getPosition(placement: Placement, tarPosition: Position, position: Position) {
   if (verticalPlacement.includes(placement)) {
     const left = placement.includes('left');
     return getVerticalPosition(placement, left, tarPosition, position, arrowSize);
@@ -28,10 +31,10 @@ export function getPosition(placement: Placement, tarPosition: Position, positio
 function getVerticalPosition(placement: Placement, left: boolean, tarPosition: Position, position: Position, arrowSize: number) {
   const { height: winHeight } = getWinSize();
   const {
-    width: tarWidth,
     height: tarHeight,
     top: tarTop,
     left: tarLeft,
+    right: tarRight,
   } = tarPosition;
   const {
     width,
@@ -39,7 +42,7 @@ function getVerticalPosition(placement: Placement, left: boolean, tarPosition: P
   } = position;
   const tarCenter = tarTop + tarHeight / 2;
   let contentTop = 0;
-  const contentLeft = left ? tarLeft - width - space : tarLeft + tarWidth + space;
+  const contentLeft = left ? tarLeft - width - space : tarRight + space;
   if (placement.includes('Top')) {
     contentTop = tarCenter - height / scale;
   } else if (placement.includes('Bottom')) {
@@ -58,16 +61,16 @@ function getHorizontalPosition(placement: Placement, top: boolean, tarPosition: 
   const { width: winWidth } = getWinSize();
   const {
     width: tarWidth,
-    height: tarHeight,
     top: tarTop,
     left: tarLeft,
+    bottom: tarBottom,
   } = tarPosition;
   const {
     width,
     height,
   } = position;
   const tarCenter = tarLeft + tarWidth / 2;
-  const contentTop = top ? tarTop - height - space : tarTop + tarHeight + space;
+  const contentTop = top ? tarTop - height - space : tarBottom + space;
   let contentLeft = 0;
   if (placement.includes('Left')) {
     contentLeft = tarCenter - width / scale;
@@ -86,17 +89,17 @@ function getHorizontalPosition(placement: Placement, top: boolean, tarPosition: 
 export function getAutoPosition(placement: Placement, tarPosition: Position, position: Position): Placement {
   const { width: winWidth, height: winHeight } = getWinSize();
   const {
-    width: tarWidth,
-    height: tarHeight,
     top: tarTop,
     left: tarLeft,
+    right: tarRight,
+    bottom: tarBottom,
   } = tarPosition;
   const {
     width,
     height,
   } = position;
   if (verticalPlacement.includes(placement)) {
-    if (tarWidth + tarLeft + width + space > winWidth) {
+    if (tarRight + width + space > winWidth) {
       return placement.replace('right', 'left') as Placement;
     }
     if (tarLeft < width) {
@@ -104,7 +107,7 @@ export function getAutoPosition(placement: Placement, tarPosition: Position, pos
     }
     return placement;
   } else {
-    if (tarHeight + tarTop + height + space > winHeight) {
+    if (tarBottom + height + space > winHeight) {
       return placement.replace('bottom', 'top') as Placement;
     }
     if (tarTop < height) {

@@ -1,6 +1,6 @@
 {
   "name": "rc-stepguide",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "@babel/runtime": "^7.12.5",
     "@babel/runtime-corejs3": "^7.12.5",
+    "classnames": "^2.2.6",
     "core-js": "2"
   },
   "devDependencies": {

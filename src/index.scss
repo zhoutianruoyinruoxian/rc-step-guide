@@ -1,37 +1,41 @@
 $step-guide:'step-guide';
 
-.#{$step-guide}-wrapper {
-  overflow: hidden;
-}
-
-.#{$step-guide}-mask {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 9997;
-  overflow: hidden;
-  background-color: rgba(33, 33, 33, 0.2);
-  animation: maskColor 0.3s forwards;
-}
-
-.#{$step-guide}-target {
-  position: fixed;
-  z-index: 9998;
-}
-.#{$step-guide}-target-mask {
-  position: fixed;
-  z-index: 9999;
-}
-
 .#{$step-guide} {
-  color: #fff;
+  overflow: hidden;
+
+
+  &-mask {
+    position: fixed;
+    left: 200px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9997;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &-item {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: transparent;
+      transition: background-color 0.3s;
+    }
+
+    &-show {
+      .#{$step-guide}-mask-item {
+        background-color: rgba(33, 33, 33, 0.2);
+      }
+    }
+  }
 
   &-content {
     position: fixed;
-    opacity: 0;
     z-index: 9999;
+    color: #fff;
+    opacity: 0;
     transition: all 0.3s;
   }
 
@@ -100,11 +104,13 @@ $step-guide:'step-guide';
     }
   }
 
+  $arrow-position:-6px;
+
   .#{$step-guide}-placement-right,
   .#{$step-guide}-placement-rightTop,
   .#{$step-guide}-placement-rightBottom {
     .#{$step-guide}-arrow {
-      left: -5px;
+      left: $arrow-position;
     }
   }
 
@@ -112,7 +118,7 @@ $step-guide:'step-guide';
   .#{$step-guide}-placement-leftTop,
   .#{$step-guide}-placement-leftBottom {
     .#{$step-guide}-arrow {
-      right: -5px;
+      right: $arrow-position;
     }
   }
 
@@ -120,7 +126,7 @@ $step-guide:'step-guide';
   .#{$step-guide}-placement-topLeft,
   .#{$step-guide}-placement-topRight {
     .#{$step-guide}-arrow {
-      bottom: -5px;
+      bottom: $arrow-position;
     }
   }
 
@@ -128,17 +134,7 @@ $step-guide:'step-guide';
   .#{$step-guide}-placement-bottomLeft,
   .#{$step-guide}-placement-bottomRight {
     .#{$step-guide}-arrow {
-      top: -5px;
+      top: $arrow-position;
     }
-  }
-}
-
-@keyframes maskColor {
-  from {
-    background-color: transparent;
-  }
-
-  to {
-    background-color: rgba(33, 33, 33, 0.2);
   }
 }
