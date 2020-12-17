@@ -1,9 +1,17 @@
 rc-stepguide
 =========================
 
-this package is a react component for step guide.
+This is a react component for step guide.
+
+Designed to solve the prompting of specific areas in complex applications, can automatically track the prompt target through the node, and have a smooth transition animation;
+
+This component decouples the logic related to the step guidance from the business code, and will not cause intrusive damage to the business code. You only need to set the relevant configuration;
+
+By configuring useEffect, you can customize the active state of the tracked node. For example, the hidden target is displayed when it is guided. For details, you can view SpecialScene in the demo;
 
 [中文文档请看这里](https://blog.csdn.net/xiaotiantian1993s/article/details/111310930)
+
+[demo](https://github.com/zhoutianruoyinruoxian/rc-step-guide/tree/master/demo)
 
 ## install
 
