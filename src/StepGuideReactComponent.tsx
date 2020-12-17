@@ -7,12 +7,12 @@ import Mask from './Mask';
 
 export interface Options {
   prefixCls?: string;
-  doneLabel?: ReactNode;
-  nextLabel?: ReactNode;
+  doneText?: ReactNode;
+  nextText?: ReactNode;
   showNext?: boolean;
-  prevLabel?: ReactNode,
+  prevText?: ReactNode,
   showPrev?: boolean,
-  skipLabel?: ReactNode;
+  skipText?: ReactNode;
   showSkip?: boolean;
   mask?: boolean;
 }
@@ -47,7 +47,7 @@ const StepGuideReactComponent: FC<StepGuideReactComponentProps> = ({
   onSkip,
   tarPosition, // 目标位置
 }) => {
-  const { prefixCls, mask, doneLabel, nextLabel, showNext, prevLabel, showPrev, skipLabel, showSkip } = options;
+  const { prefixCls, mask, doneText, nextText, showNext, prevText, showPrev, skipText, showSkip } = options;
   const { placement: oldPlacement = 'rightTop' } = currentData;
   const [placement, setPlacement] = useState('');
   const [style, setStyle] = useState({ arrow: {}, content: {} });
@@ -87,7 +87,7 @@ const StepGuideReactComponent: FC<StepGuideReactComponentProps> = ({
               <div
                 className={`${prefixCls}-footer-skip`}
                 onClick={onSkip}
-              >{skipLabel}</div>
+              >{skipText}</div>
             }
             {stepLength > 1 &&
               <div className={`${prefixCls}-footer-total`}>({currentStep + 1}/{stepLength})</div>
@@ -96,13 +96,13 @@ const StepGuideReactComponent: FC<StepGuideReactComponentProps> = ({
               <div
                 className={`${prefixCls}-footer-prev`}
                 onClick={onPrev}
-              >{prevLabel}</div>
+              >{prevText}</div>
             }
             {showNext &&
               <div
                 className={`${prefixCls}-footer-next`}
                 onClick={onNext}
-              >{currentStep === stepLength - 1 ? doneLabel : nextLabel}</div>
+              >{currentStep === stepLength - 1 ? doneText : nextText}</div>
             }
           </div>
         </div>

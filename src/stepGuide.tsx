@@ -19,12 +19,12 @@ export type Setting = Options & Events
 export default function StepGuide(stepData: Steps, setting?: Setting) {
   const options: Setting = {
     prefixCls: 'step-guide',
-    doneLabel: '确定',
-    nextLabel: '下一步',
+    doneText: '确定',
+    nextText: '下一步',
     showNext: true,
-    prevLabel: '上一步',
+    prevText: '上一步',
     showPrev: false,
-    skipLabel: '跳过',
+    skipText: '跳过',
     showSkip: true,
     mask: true,
     onPrev() { },
