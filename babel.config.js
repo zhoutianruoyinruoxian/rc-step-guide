@@ -21,6 +21,11 @@ module.exports = {
     ],
     [
       "@babel/preset-react",
+      {
+        // react17之后才用了新的jsx解析器，不再需要导入React对象，开启这个选项，可以是babel用新的jsx解析器
+        // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+        runtime: "automatic",
+      }
     ],
     [
       "@babel/preset-typescript",
