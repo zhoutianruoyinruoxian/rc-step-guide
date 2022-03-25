@@ -13,6 +13,10 @@ module.exports = {
         ],
         // modules: 'cjs',
         useBuiltIns: "usage",
+        corejs: {
+          version: "3",
+          proposals: true
+        }
       }
     ],
     [
